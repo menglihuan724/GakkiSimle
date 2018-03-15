@@ -15,19 +15,12 @@
 
 
     <properties>
-        <start-class>com.prometheus.thoth.RobotApplication</start-class>
-        <mysql.version></mysql.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.41</version>
         </dependency>
 
         <dependency>
@@ -44,6 +37,12 @@
         <dependency>
             <groupId>com.terry</groupId>
             <artifactId>GakkiSimle_wechat_entity</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.terry</groupId>
+            <artifactId>GakkiSimle_webchat_config</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
