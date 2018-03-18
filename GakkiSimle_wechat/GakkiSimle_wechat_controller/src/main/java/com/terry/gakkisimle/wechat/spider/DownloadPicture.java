@@ -1,3 +1,5 @@
+package com.terry.gakkisimle.wechat.spider;
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import us.codecraft.webmagic.Page;
@@ -22,17 +24,24 @@ import java.util.List;
 
 public class DownloadPicture implements PageProcessor {
     private Site site = Site.me()//.setHttpProxy(new HttpHost("127.0.0.1",8888))
-            .setRetryTimes(3).setSleepTime(1000).setUseGzip(true);
+            .setRetryTimes(3).setSleepTime(1000).setUseGzip(true).setCharset("utf-8");
     List<String> urls;
     List<String> names;
     static String key;
+    int pageNum;
+
+    public DownloadPicture(int page) {
+        this.pageNum = page;
+    }
 
     public void setUrls(List<String> urls) {
         this.urls = urls;
     }
+
     public void setNames(List<String> names) {
         this.names = names;
     }
+
 
     public List<String> getUrls() {
         return urls;
@@ -40,6 +49,10 @@ public class DownloadPicture implements PageProcessor {
 
     public List<String> getNames() {
         return names;
+    }
+
+    public Site getSite() {
+        return site;
     }
 
 
@@ -59,34 +72,25 @@ public class DownloadPicture implements PageProcessor {
         }
         setUrls(url_list);
         setNames(name_list);
-    }
-
-    public Site getSite() {
-        return site;
+        List<String> urlList =getUrls();
+        for (int j = 0; j <urlList.size() ; j++) {
+            new Thread(new DownLoader(urlList.get(j),j,pageNum)).start();
+        }
     }
 
     public static void main(String[] args) throws InterruptedException {
         key = "新垣结衣";    //百度图片 关键词
 
-        for(int i=1;i<5;i++){   //控制爬取页数，一页30张图片
+        for(int pageNum=0;pageNum<24;pageNum++){   //控制爬取页数，一页30张图片
             //String url = "https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&queryWord="+key+"&word="+key+"&pn="+i*3+"0";
-            String url="http://image.baidu.com/search/avatarjson?tn=resultjsonavatarnew&ie=utf-8&word="+key+"&cg=star&pn="+i*30+"&rn=30&itg=0&z=0&fr=&width=&height=&lm=-1&ic=0&s=0&st=-1&gsm="+Integer.toHexString(i*30);
-            DownloadPicture downloadPicture=new DownloadPicture();
+            String url="http://image.baidu.com/search/avatarjson?tn=resultjsonavatarnew&ie=utf-8&word="+key+"&cg=star&pn="+pageNum*30+"&rn=30&itg=0&z=0&fr=&width=&height=&lm=-1&ic=0&s=0&st=-1&gsm="+Integer.toHexString(pageNum*30);
+            DownloadPicture downloadPicture=new DownloadPicture(pageNum);
             Spider spider=Spider.create(downloadPicture);
-            spider.addUrl(url).runAsync();
-            Spider.Status status=spider.getStatus();
-            do {
-                Thread.sleep(2000);
-            }while (status!= Spider.Status.Stopped);
-            List<String> urlList =downloadPicture.getUrls();
-            for (int j = 0; j <urlList.size() ; j++) {
-                new Thread(new DownLoader(urlList.get(j),j,i)).start();
-            }
-
+            spider.addUrl(url).start();
         }
 
     }
-
+    /*图片下载*/
     static class  DownLoader implements Runnable{
         String myurl;
         int name;
@@ -102,12 +106,12 @@ public class DownloadPicture implements PageProcessor {
             try {
                 url = new URL(myurl);
                 DataInputStream dataInputStream = new DataInputStream(url.openStream());
-                String imageName = page+name + ".jpg";
-                File file=new File("F:\\pic\\"+key);    //设置下载路径
+                String imageName = page+"_"+name + ".jpg";
+                File file=new File("E:\\Pic\\"+key);    //设置下载路径
                 if(!file.isDirectory()){
                     file.mkdirs();
                 }
-                FileOutputStream fileOutputStream = new FileOutputStream(new File("F:\\pic\\"+ key +"\\"+ imageName.trim()));
+                FileOutputStream fileOutputStream = new FileOutputStream(new File("E:\\Pic\\"+ key +"\\"+ imageName.trim()));
                 byte[] buffer = new byte[1024];
                 int length;
                 while ((length = dataInputStream.read(buffer)) > 0) {

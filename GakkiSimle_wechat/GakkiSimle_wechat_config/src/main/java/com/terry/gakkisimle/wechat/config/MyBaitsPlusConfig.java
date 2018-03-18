@@ -20,7 +20,7 @@ import java.util.Properties;
  * @Description:
  */
 @Configuration
-@MapperScan(value = {"com.terry.gakkisimle.wechat.service.mapper"})
+@MapperScan(value = {"com.terry.gakkisimle.wechat.mapper"})
 public class MyBaitsPlusConfig {
     //数据库1
     @Bean(name = "mysqlDataSource")
