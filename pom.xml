@@ -67,12 +67,6 @@
 			<artifactId>spring-cloud-starter</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
 		<!--<dependency>-->
 			<!--<groupId>org.apache.logging.log4j</groupId>-->
 			<!--<artifactId>log4j-api</artifactId>-->
@@ -134,11 +128,6 @@
 				<version>${mybatis-plus.version}</version>
 			</dependency>
 
-			<dependency>
-				<groupId>org.mybatis.spring.boot</groupId>
-				<artifactId>mybatis-spring-boot-starter</artifactId>
-				<version>${mybatis-spring-boot-starter.version}</version>
-			</dependency>
 
 			<!-- mapper -->
 			<dependency>
@@ -177,17 +166,6 @@
 				<version>${kafka-clients.version}</version>
 			</dependency>
 
-			<dependency>
-				<groupId>io.springfox</groupId>
-				<artifactId>springfox-swagger2</artifactId>
-				<version>${springfox-swagger.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>io.springfox</groupId>
-				<artifactId>springfox-swagger-ui</artifactId>
-				<version>${springfox-swagger.version}</version>
-			</dependency>
 			<dependency>
 				<groupId>com.github.pagehelper</groupId>
 				<artifactId>pagehelper-spring-boot-starter</artifactId>
