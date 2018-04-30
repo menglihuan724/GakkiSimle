@@ -11,9 +11,8 @@
         <groupId>com.terry</groupId>
         <artifactId>GakkiSimle</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <dependencies>
         <!--可能依赖不足,后期添加-->

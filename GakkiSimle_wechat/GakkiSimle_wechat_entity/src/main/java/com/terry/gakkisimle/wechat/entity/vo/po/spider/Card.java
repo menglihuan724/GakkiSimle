@@ -1,10 +1,7 @@
 package com.terry.gakkisimle.wechat.entity.vo.po.spider;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 
 import java.io.Serializable;
@@ -93,4 +90,6 @@ public class Card  extends Model<Card> {
     protected Serializable pkVal() {
         return this.id;
     }
+
+
 }

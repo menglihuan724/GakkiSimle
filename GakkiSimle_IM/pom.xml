@@ -10,23 +10,23 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>GakkiSimle_wechat</artifactId>
+    <artifactId>GakkiSimle_IM</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>GakkiSimile_wechat_service</module>
-        <module>GakkiSimle_wechat_entity</module>
-        <module>GakkiSimle_wechat_controller</module>
-        <module>GakkiSimle_wechat_config</module>
+        <module>GakkiSimle_IM_Service</module>
+        <module>../GakkiSimle_wechat/GakkiSimle_wechat_entity</module>
+        <module>GakkiSimle_IM_controller</module>
+        <module>GakkiSimle_IM_config</module>
     </modules>
 
-    <name>GakkiSimle_wechat</name>
+    <name>GakkiSimle_IM</name>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.terry</groupId>
-                <artifactId>GakkiSimle_webchat_config</artifactId>
+                <artifactId>GakkiSimle_IM_config</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
@@ -36,27 +36,31 @@
             </dependency>
             <dependency>
                 <groupId>com.terry</groupId>
-                <artifactId>GakkiSimle_webchat_service</artifactId>
+                <artifactId>GakkiSimile_IM_Service</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.terry</groupId>
-                <artifactId>GakkiSimle_webchat_controller</artifactId>
+                <artifactId>GakkiSimle_IM_controller</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
     <properties>
-        <start-class>com.terry.gakkisimle.WechatApplication</start-class>
+        <start-class>com.terry.gakkisimle.IMApplication</start-class>
     </properties>
 
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>com.terry</groupId>-->
-            <!--<artifactId>GakkiSimle_dependencies</artifactId>-->
-            <!--<version>1.0-SNAPSHOT</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
@@ -81,9 +85,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.github.binarywang</groupId>
-            <artifactId>weixin-java-miniapp</artifactId>
-            <version>2.9.0</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
     </dependencies>

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface MainPageService {
     List<Card> getAllCard();
+    void insertCard();
+    void insertCard2();
 }

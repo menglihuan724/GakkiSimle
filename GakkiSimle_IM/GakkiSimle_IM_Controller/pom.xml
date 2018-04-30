@@ -4,15 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <name>GakkiSimle_wechat_controller</name>
+    <name>GakkiSimle_IM_controller</name>
     <parent>
-        <artifactId>GakkiSimle_wechat</artifactId>
+        <artifactId>GakkiSimle_IM</artifactId>
         <groupId>com.terry</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
     <groupId>com.terry</groupId>
-    <artifactId>GakkiSimle_wechat_controller</artifactId>
+    <artifactId>GakkiSimle_IM_controller</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -27,10 +27,9 @@
         </dependency>
         <dependency>
             <groupId>com.terry</groupId>
-            <artifactId>GakkiSimile_wechat_service</artifactId>
+            <artifactId>GakkiSimle_IM_Service</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
         <dependency>
             <groupId>com.terry</groupId>
             <artifactId>GakkiSimle_wechat_entity</artifactId>
@@ -39,7 +38,7 @@
 
         <dependency>
             <groupId>com.terry</groupId>
-            <artifactId>GakkiSimle_webchat_config</artifactId>
+            <artifactId>GakkiSimle_IM_Config</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
@@ -52,17 +51,17 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.springframework.boot</groupId>-->
+                    <!--<artifactId>spring-boot-starter-logging</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-log4j2</artifactId>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-log4j2</artifactId>-->
         <!--</dependency>-->
         <!--使用配置中心-->
         <dependency>
@@ -70,22 +69,6 @@
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>us.codecraft</groupId>
-            <artifactId>webmagic-core</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-            </exclusions>
-            <version>0.7.3</version>
-        </dependency>
-        <dependency>
-            <groupId>us.codecraft</groupId>
-            <artifactId>webmagic-extension</artifactId>
-            <version>0.7.3</version>
-        </dependency>
     </dependencies>
 
 </project>
