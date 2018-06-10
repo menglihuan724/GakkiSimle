@@ -95,7 +95,6 @@ mybatis-plus:
     #sql-injector: com.baomidou.springboot.xxx
 #环境参数
 
-
 server:
     tomcat:
         uri-encoding: UTF-8
@@ -114,3 +113,8 @@ sys:
     useRedisCache: 1 #是否使用redis缓存
     expireTime: 1800000 #Session过期时间，单位毫秒
     wechatAppSecret: e0177bc4044c4fa29e7b85a4e2da852b
+#优雅关机
+endpoints:
+  shutdown:
+    enabled: true
+    sensitive: false
