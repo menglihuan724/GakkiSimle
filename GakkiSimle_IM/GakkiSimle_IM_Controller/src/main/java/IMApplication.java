@@ -15,7 +15,6 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableEurekaClient
 @SpringBootApplication
 @EnableFeignClients
-@EnableCaching
 @ComponentScan(basePackages = {"com.terry.gakkisimle.IM"})
 public class IMApplication {
     public static void main(String[] args) {
