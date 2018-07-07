@@ -1,7 +1,7 @@
 package com.terry.gakkisimle.wechat.service.imp;
 
-import com.terry.gakkisimle.wechat.entity.vo.po.spider.Card;
-import com.terry.gakkisimle.wechat.entity.vo.po.spider.ProxCard;
+import com.terry.gakkisimle.wechat.entity.po.spider.Card;
+import com.terry.gakkisimle.wechat.entity.po.spider.ProxCard;
 import com.terry.gakkisimle.wechat.mapper.CardMapper;
 import com.terry.gakkisimle.wechat.service.MainPageService;
 import com.terry.gakkisimle.wechat.service.TestService;

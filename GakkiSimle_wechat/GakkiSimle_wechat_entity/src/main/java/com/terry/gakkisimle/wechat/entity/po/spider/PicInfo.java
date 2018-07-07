@@ -1,4 +1,4 @@
-package com.terry.gakkisimle.wechat.entity.vo.po.spider;
+package com.terry.gakkisimle.wechat.entity.po.spider;
 
 public class PicInfo {
     private String page_url ;

@@ -22,7 +22,7 @@ import java.util.List;
  **/
 
 
-public class DownloadPicture implements PageProcessor {
+public class DownloadBaiduPicture implements PageProcessor {
     private Site site = Site.me()//.setHttpProxy(new HttpHost("127.0.0.1",8888))
             .setRetryTimes(3).setSleepTime(1000).setUseGzip(true).setCharset("utf-8");
     List<String> urls;
@@ -30,7 +30,7 @@ public class DownloadPicture implements PageProcessor {
     static String key;
     int pageNum;
 
-    public DownloadPicture(int page) {
+    public DownloadBaiduPicture(int page) {
         this.pageNum = page;
     }
 
@@ -84,14 +84,14 @@ public class DownloadPicture implements PageProcessor {
         for(int pageNum=0;pageNum<24;pageNum++){   //控制爬取页数，一页30张图片
             //String url = "https://image.baidu.com/search/acjson?tn=resultjson_com&ipn=rj&queryWord="+key+"&word="+key+"&pn="+i*3+"0";
             String url="http://image.baidu.com/search/avatarjson?tn=resultjsonavatarnew&ie=utf-8&word="+key+"&cg=star&pn="+pageNum*30+"&rn=30&itg=0&z=0&fr=&width=&height=&lm=-1&ic=0&s=0&st=-1&gsm="+Integer.toHexString(pageNum*30);
-            DownloadPicture downloadPicture=new DownloadPicture(pageNum);
+            DownloadBaiduPicture downloadPicture=new DownloadBaiduPicture(pageNum);
             Spider spider=Spider.create(downloadPicture);
             spider.addUrl(url).start();
         }
 
     }
     /*图片下载*/
-    static class  DownLoader implements Runnable{
+    static class  DownLoader implements Runnable{  
         String myurl;
         int name;
         int page;

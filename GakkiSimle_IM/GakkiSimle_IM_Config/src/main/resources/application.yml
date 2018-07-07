@@ -113,6 +113,7 @@ sys:
     useRedisCache: 1 #是否使用redis缓存
     expireTime: 1800000 #Session过期时间，单位毫秒
     wechatAppSecret: e0177bc4044c4fa29e7b85a4e2da852b
+    database: 123456
 #优雅关机
 endpoints:
   shutdown:

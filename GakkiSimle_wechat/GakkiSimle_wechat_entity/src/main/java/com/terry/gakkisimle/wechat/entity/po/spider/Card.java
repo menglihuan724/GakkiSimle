@@ -1,13 +1,15 @@
-package com.terry.gakkisimle.wechat.entity.vo.po.spider;
+package com.terry.gakkisimle.wechat.entity.po.spider;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.Serializable;
 
-//@TableName("card")
 public class Card  extends Model<Card> {
+
     @TableId( type=IdType.INPUT)
     private String id;
     private String text;
