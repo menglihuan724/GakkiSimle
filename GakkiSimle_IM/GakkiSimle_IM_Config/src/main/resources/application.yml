@@ -18,7 +18,7 @@ spring:
             max-file-size: 100MB
             max-request-size: 100MB
             enabled: true
-
+  #数据源
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
@@ -55,6 +55,25 @@ spring:
     sleuth:
       sampler:
         percentage: 1.0
+    #kafka
+    kafka:
+      bootstrap-servers: localhost:9092
+      producer:
+        batch-size: 16384
+        buffer-memory: 33554432
+        #key-serializer: org.apache.kafka.common.serialization.StringDeserializer
+        #value-serializer: org.apache.kafka.common.serialization.StringDeserializer
+      consumer:
+        group-id: test
+        auto-offset-reset: earliest
+        enable-auto-commit: true
+        auto-commit-interval: 100
+        bootstrap-servers: localhost:9092
+        concurrency: 10
+        zookeeper:
+          connect: localhost:2181
+        #key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        #value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 #sleuth&&log4j2
 logging:
     #config: classpath:/logback-spring.xml

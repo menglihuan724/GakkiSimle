@@ -107,11 +107,11 @@ public class DownloadBaiduPicture implements PageProcessor {
                 url = new URL(myurl);
                 DataInputStream dataInputStream = new DataInputStream(url.openStream());
                 String imageName = page+"_"+name + ".jpg";
-                File file=new File("E:\\Pic\\"+key);    //设置下载路径
+                File file=new File("F:\\Pic\\"+key);    //设置下载路径
                 if(!file.isDirectory()){
                     file.mkdirs();
                 }
-                FileOutputStream fileOutputStream = new FileOutputStream(new File("E:\\Pic\\"+ key +"\\"+ imageName.trim()));
+                FileOutputStream fileOutputStream = new FileOutputStream(new File("F:\\Pic\\"+ key +"\\"+ imageName.trim()));
                 byte[] buffer = new byte[1024];
                 int length;
                 while ((length = dataInputStream.read(buffer)) > 0) {
