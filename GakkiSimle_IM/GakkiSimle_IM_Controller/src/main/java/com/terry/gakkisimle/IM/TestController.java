@@ -1,18 +1,15 @@
-package com.terry.gakkisimle.IM.sys;
+package com.terry.gakkisimle.IM;
 
-import com.google.common.cache.CacheLoader;
+import com.terry.gakkisimle.IM.service.CardService;
 import com.terry.gakkisimle.core.common.web.controller.BaseController;
-import com.terry.gakkisimle.wechat.entity.vo.Test;
+import com.terry.gakkisimle.wechat.entity.po.spider.Card;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
-import net.sf.ehcache.config.CacheConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,11 +18,17 @@ public class TestController extends BaseController {
 
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private CardService cardService;
+
     @RequestMapping("/helloworld")
     public String test(){
-        Test a=new Test();
-        List<Test> res=a.selectAll();
         return "IM调用";
+    }
+
+    @GetMapping("/getAllCard")
+    public List<Card> getAllCard(){
+        return cardService.getALL();
     }
 
     @RequestMapping("/putRedis/{name}/{score}")

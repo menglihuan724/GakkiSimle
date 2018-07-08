@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
+import tk.mybatis.mapper.common.BaseMapper;
+import tk.mybatis.spring.annotation.MapperScan;
 
 
 /**
@@ -15,6 +17,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableEurekaClient
 @SpringBootApplication
 @EnableFeignClients
+@MapperScan(basePackages = {"com.terry.gakkisimle.IM.mapper"})
 @ComponentScan(basePackages = {"com.terry.gakkisimle.IM"})
 public class IMApplication {
     public static void main(String[] args) {
