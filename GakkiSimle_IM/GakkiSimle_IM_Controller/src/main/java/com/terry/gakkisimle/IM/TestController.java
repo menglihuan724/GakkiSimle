@@ -28,7 +28,7 @@ public class TestController extends BaseController {
 
     @GetMapping("/getAllCard")
     public List<Card> getAllCard(){
-        return cardService.getALL();
+        return cardService.getAllByMongo();
     }
 
     @RequestMapping("/putRedis/{name}/{score}")

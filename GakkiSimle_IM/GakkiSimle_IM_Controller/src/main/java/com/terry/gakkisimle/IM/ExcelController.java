@@ -18,7 +18,11 @@ public class ExcelController {
     ExcelService excelService;
     @PostMapping("/insertNum")
     public String insertNum(HttpServletRequest res){
-        excelService.ImportNum();
+        try {
+            excelService.ImportNum();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "ok";
     }
 }

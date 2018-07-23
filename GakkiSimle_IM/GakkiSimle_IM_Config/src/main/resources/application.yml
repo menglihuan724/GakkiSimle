@@ -72,8 +72,12 @@ spring:
         concurrency: 10
         zookeeper:
           connect: localhost:2181
+    data:
+      mongodb:
+        uri: mongodb://menglihuan:297234@120.78.78.109:27018/gakki
         #key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
         #value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    #mongodb
 #sleuth&&log4j2
 logging:
     #config: classpath:/logback-spring.xml

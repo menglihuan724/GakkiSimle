@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface CardService {
     List<Card> getALL() ;
+    List<Card> getAllByMongo();
 }
