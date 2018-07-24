@@ -10,7 +10,6 @@ import javax.persistence.Column;
 import java.io.Serializable;
 
 public class  Card  extends Model<Card>  {
-
     @TableId( type=IdType.INPUT)
     private String id;
     private String text;

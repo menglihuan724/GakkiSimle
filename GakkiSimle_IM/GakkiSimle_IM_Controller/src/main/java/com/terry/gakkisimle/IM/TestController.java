@@ -1,5 +1,6 @@
 package com.terry.gakkisimle.IM;
 
+import com.mongodb.BasicDBObject;
 import com.terry.gakkisimle.IM.service.CardService;
 import com.terry.gakkisimle.core.common.web.controller.BaseController;
 import com.terry.gakkisimle.wechat.entity.po.spider.Card;
@@ -27,8 +28,23 @@ public class TestController extends BaseController {
     }
 
     @GetMapping("/getAllCard")
-    public List<Card> getAllCard(){
+    public Object getAllCard(){
         return cardService.getAllByMongo();
+    }
+    @GetMapping("/getOne")
+    public Object getOne(String id){
+        BasicDBObject basicDBObject=cardService.findById(id);
+        return basicDBObject;
+    }
+
+    @PostMapping("/deleteOne")
+    public void deleteOne(String id){
+         cardService.deleteById(id);
+    }
+
+    @PostMapping("/insertOrSave")
+    public void insertOrSave(String object){
+        cardService.insertOrupdate(BasicDBObject.parse(object));
     }
 
     @RequestMapping("/putRedis/{name}/{score}")
