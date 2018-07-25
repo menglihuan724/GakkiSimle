@@ -4,11 +4,13 @@ import com.mongodb.BasicDBObject;
 import com.terry.gakkisimle.IM.mapper.CardMapper;
 import com.terry.gakkisimle.IM.service.CardService;
 import com.terry.gakkisimle.wechat.entity.po.spider.Card;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.aggregation.TypedAggregation;
+import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
@@ -53,9 +55,11 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public void insertOrupdate(BasicDBObject basicDBObject) {
+        Query query=new Query();
+        query.addCriteria( Criteria.where("_id").is(basicDBObject.getString("id")));
         Update update=new Update();
-        update.push("test","123");
-        mongoTemplate.updateFirst(new Query(),update,"card");
+        update.set("text",basicDBObject.getString("text"));
+        mongoTemplate.updateFirst(query,update,"card");
     }
 
 }
