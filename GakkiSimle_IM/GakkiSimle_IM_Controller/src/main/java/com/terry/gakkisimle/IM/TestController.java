@@ -3,7 +3,6 @@ package com.terry.gakkisimle.IM;
 import com.mongodb.BasicDBObject;
 import com.terry.gakkisimle.IM.service.CardService;
 import com.terry.gakkisimle.core.common.web.controller.BaseController;
-import com.terry.gakkisimle.wechat.entity.po.spider.Card;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -46,6 +46,11 @@ public class TestController extends BaseController {
     public void insertOrSave(String object){
         cardService.insertOrupdate(BasicDBObject.parse(object));
     }
+    @GetMapping("/testFulx")
+    public Mono<String> testFulx(){
+        return Mono.just("Welcome to reactive world ");
+    }
+
 
     @RequestMapping("/putRedis/{name}/{score}")
     public String test2(@PathVariable String name,@PathVariable Integer score){

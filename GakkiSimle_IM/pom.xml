@@ -49,6 +49,11 @@
                 <artifactId>spring-boot-starter-data-mongodb</artifactId>
                 <version>${mongo.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.projectreactor</groupId>
+                <artifactId>reactor-core</artifactId>
+                <version>${reactor-core.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

@@ -47,6 +47,7 @@
 		<mysql.version>5.1.41</mysql.version>
 		<springfox-swagger.version>2.6.1</springfox-swagger.version>
 		<mongo.version>1.5.8.RELEASE</mongo.version>
+		<reactor-core.version>3.1.2.RELEASE</reactor-core.version>
 	</properties>
 
 	<dependencies>
@@ -168,6 +169,12 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-data-mongodb</artifactId>
 				<version>${mongo.version}</version>
+			</dependency>
+			<!--响应式编程-->
+			<dependency>
+				<groupId>io.projectreactor</groupId>
+				<artifactId>reactor-core</artifactId>
+				<version>${reactor-core.version}</version>
 			</dependency>
 			<!--其他工具-->
 			<dependency>
