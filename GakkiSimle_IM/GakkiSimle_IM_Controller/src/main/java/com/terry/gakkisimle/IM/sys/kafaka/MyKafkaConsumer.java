@@ -1,4 +1,4 @@
-package com.terry.gakkisimle.IM.sys;
+package com.terry.gakkisimle.IM.sys.kafaka;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
