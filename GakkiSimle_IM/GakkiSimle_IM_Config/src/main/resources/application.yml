@@ -22,8 +22,9 @@ spring:
     datasource:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/gakkisimle?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&&characterSetServer=utf8mb4
-        username: root
+        #url: jdbc:mysql://localhost:3306/gakkisimle?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&&characterSetServer=utf8mb4
+        url: jdbc:mysql://130.24.35.51:3306/gakkisimle?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+        username: menglihuan
         password: 297234
         initial-size: 5
         max-active: 10
@@ -78,6 +79,7 @@ spring:
         #key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
         #value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     #mongodb
+
 #sleuth&&log4j2
 logging:
     #config: classpath:/logback-spring.xml
@@ -113,10 +115,10 @@ pagehelper:
 server:
     tomcat:
         uri-encoding: UTF-8
-        max-threads: 1000
-        min-spare-threads: 30
+        max-threads: 20
+        min-spare-threads: 10
     port: 8086
-    servlet-path: /gakkisimle
+    servlet-path: /
 
 #系统变量配置
 sys:

@@ -4,7 +4,6 @@ import com.terry.gakkisimle.wechat.entity.po.spider.Card;
 import com.terry.gakkisimle.wechat.entity.po.spider.ProxCard;
 import com.terry.gakkisimle.wechat.mapper.CardMapper;
 import com.terry.gakkisimle.wechat.service.MainPageService;
-import com.terry.gakkisimle.wechat.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -16,8 +15,6 @@ import java.util.List;
 public class MainPageServiceImp implements MainPageService {
     @Autowired
     CardMapper cardMapper;
-    @Autowired
-    TestService testService;
     @Override
     public List<Card> getAllCard() {
         Card var1=new Card();
@@ -25,6 +22,7 @@ public class MainPageServiceImp implements MainPageService {
         return list;
     }
     @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Override
     public void insertCard(){
         Card var1=  new Card();
         ClassLoader loader = Card.class.getClassLoader();
@@ -33,9 +31,9 @@ public class MainPageServiceImp implements MainPageService {
         Card proxy = (Card) Proxy.newProxyInstance(loader, interfaces, var2);
         proxy.setId("123");
         cardMapper.insert(var1);
-        testService.test();
     }
     @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Override
     public void insertCard2(){
         Card var1=new Card();
         var1.setId("333");

@@ -2,9 +2,7 @@ package com.terry.gakkisimle.wechat.entity.po.spider;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
-import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.Column;
 import java.io.Serializable;
