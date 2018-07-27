@@ -2,14 +2,12 @@ package com.terry.gakkisimle.wechat.spider;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.terry.gakkisimle.wechat.entity.vo.po.spider.Card;
-import org.springframework.beans.factory.FactoryBean;
+import com.terry.gakkisimle.wechat.entity.po.spider.Card;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
-import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
 

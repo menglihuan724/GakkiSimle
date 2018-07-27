@@ -1,20 +1,27 @@
-package com.terry.gakkisimle.wechat.entity.vo.po.spider;
+package com.terry.gakkisimle.wechat.entity.po.spider;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
+import org.springframework.beans.factory.annotation.Value;
 
+import javax.persistence.Column;
 import java.io.Serializable;
 
-//@TableName("card")
-public class Card  extends Model<Card> {
+public class  Card  extends Model<Card>  {
     @TableId( type=IdType.INPUT)
     private String id;
     private String text;
+    @Column(name = "isLongText")
     private boolean isLongText;
+    @Column(name = "created_at")
     private String created_at;
+    @Column(name = "textLength")
     private Integer textLength;
+    @Column(name = "picList")
     private String picList;
+    @Column(name = "picInfo")
     private String picInfo;
 
     @Override

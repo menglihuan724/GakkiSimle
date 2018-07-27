@@ -1,18 +1,16 @@
-package com.terry.gakkisimle.IM.sys;
+package com.terry.gakkisimle.IM;
 
-import com.google.common.cache.CacheLoader;
+import com.mongodb.BasicDBObject;
+import com.terry.gakkisimle.IM.service.CardService;
 import com.terry.gakkisimle.core.common.web.controller.BaseController;
-import com.terry.gakkisimle.wechat.entity.vo.Test;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
-import net.sf.ehcache.config.CacheConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -21,12 +19,38 @@ public class TestController extends BaseController {
 
     @Autowired
     private RedisTemplate redisTemplate;
+    @Autowired
+    private CardService cardService;
+
     @RequestMapping("/helloworld")
     public String test(){
-        Test a=new Test();
-        List<Test> res=a.selectAll();
         return "IM调用";
     }
+
+    @GetMapping("/getAllCard")
+    public Object getAllCard(){
+        return cardService.getAllByMongo();
+    }
+    @GetMapping("/getOne")
+    public Object getOne(String id){
+        BasicDBObject basicDBObject=cardService.findById(id);
+        return basicDBObject;
+    }
+
+    @PostMapping("/deleteOne")
+    public void deleteOne(String id){
+         cardService.deleteById(id);
+    }
+
+    @PostMapping("/insertOrSave")
+    public void insertOrSave(String object){
+        cardService.insertOrupdate(BasicDBObject.parse(object));
+    }
+    @GetMapping("/testFulx")
+    public Mono<String> testFulx(){
+        return Mono.just("Welcome to reactive world ");
+    }
+
 
     @RequestMapping("/putRedis/{name}/{score}")
     public String test2(@PathVariable String name,@PathVariable Integer score){
