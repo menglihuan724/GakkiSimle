@@ -16,6 +16,7 @@
 		<module>GakkiSimle_config</module>
 		<module>GakkiSimle_register</module>
 		<module>GakkiSimle_wechat</module>
+		<module>GakkiSimle_im</module>
 	</modules>
 
 	<parent>
@@ -46,7 +47,7 @@
 		<spring-kafka.version>1.1.3.RELEASE</spring-kafka.version>
 		<mysql.version>5.1.41</mysql.version>
 		<springfox-swagger.version>2.6.1</springfox-swagger.version>
-		<mongo.version>1.5.8.RELEASE</mongo.version>
+		<mongo.version>2.0.0.RELEASE</mongo.version>
 		<reactor-core.version>3.1.2.RELEASE</reactor-core.version>
 	</properties>
 
@@ -167,7 +168,7 @@
 			<!--mongodb-->
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-data-mongodb</artifactId>
+				<artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
 				<version>${mongo.version}</version>
 			</dependency>
 			<!--响应式编程-->

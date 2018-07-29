@@ -52,11 +52,6 @@
     </properties>
 
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>com.terry</groupId>-->
-            <!--<artifactId>GakkiSimle_dependencies</artifactId>-->
-            <!--<version>1.0-SNAPSHOT</version>-->
-        <!--</dependency>-->
         <!--通用mapper-->
         <dependency>
             <groupId>tk.mybatis</groupId>
