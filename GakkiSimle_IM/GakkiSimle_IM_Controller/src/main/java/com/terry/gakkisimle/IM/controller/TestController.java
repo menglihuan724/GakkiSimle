@@ -1,4 +1,4 @@
-package com.terry.gakkisimle.IM;
+package com.terry.gakkisimle.IM.controller;
 
 import com.mongodb.BasicDBObject;
 import com.terry.gakkisimle.IM.service.CardService;
@@ -10,10 +10,15 @@ import net.sf.ehcache.Element;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
+import java.awt.*;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 
 @RestController
 public class TestController extends BaseController {
@@ -48,11 +53,19 @@ public class TestController extends BaseController {
     public void insertOrSave(String object){
         cardService.insertOrupdate(BasicDBObject.parse(object));
     }
-    @GetMapping(value = "/testFulx")
+
+    @GetMapping(value = "/testFulx",produces =MediaType.APPLICATION_STREAM_JSON_VALUE)
     public Flux<Card> testFulx(){
 
         return Flux.fromStream(cardService.getAllByMongo()
-                .getMappedResults().stream());
+                .getMappedResults().stream()).delayElements(Duration.ofSeconds(1));
+    }
+
+    @GetMapping(value = "/testMono",produces  = MediaType.APPLICATION_STREAM_JSON_VALUE)
+    public Flux<Object> testFulx2(){
+
+       return Flux.interval(Duration.ofSeconds(1)).
+                map(l -> new SimpleDateFormat("HH:mm:ss").format(new Date()));
     }
 
 

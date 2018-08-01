@@ -1,4 +1,4 @@
-package com.terry.gakkisimle.IM;
+package com.terry.gakkisimle.IM.service;
 
 
 import org.springframework.web.multipart.MultipartFile;

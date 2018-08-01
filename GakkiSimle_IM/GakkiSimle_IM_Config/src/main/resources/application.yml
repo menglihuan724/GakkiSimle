@@ -23,7 +23,7 @@ spring:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
         #url: jdbc:mysql://localhost:3306/gakkisimle?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&&characterSetServer=utf8mb4
-        url: jdbc:mysql://130.24.35.51:3306/gakkisimle?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+        url: jdbc:mysql://130.24.38.75:3306/gakkisimle?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
         username: menglihuan
         password: 297234
         initial-size: 5

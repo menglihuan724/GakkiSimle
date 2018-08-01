@@ -1,11 +1,10 @@
-import com.baomidou.mybatisplus.annotations.TableName;
-import com.terry.gakkisimle.wechat.entity.po.spider.Card;
+package com.terry.gakkisimle.IM;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
-import tk.mybatis.mapper.common.BaseMapper;
 import tk.mybatis.spring.annotation.MapperScan;
 
 
