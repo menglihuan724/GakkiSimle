@@ -12,4 +12,5 @@ public interface CardService {
     BasicDBObject findById(String name);
     void deleteById(String id);
     void insertOrupdate(BasicDBObject basicDBObject);
+    List<Card> getAllCardReact();
 }

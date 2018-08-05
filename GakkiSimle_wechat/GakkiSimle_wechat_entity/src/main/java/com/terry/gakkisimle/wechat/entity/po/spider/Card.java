@@ -4,22 +4,25 @@ import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 import java.io.Serializable;
-
+@Entity
+@Table(name = "card")
 public class  Card  extends Model<Card>  {
     @TableId( type=IdType.INPUT)
+    @Id()
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String text;
-    @Column(name = "isLongText")
-    private boolean isLongText;
+    @Column(name = "isLongText",columnDefinition="tinyint")
+    private Boolean isLongText;
     @Column(name = "created_at")
     private String created_at;
-    @Column(name = "textLength")
+    @Column(name = "textLength",columnDefinition="int")
     private Integer textLength;
-    @Column(name = "picList")
+    @Column(name = "picList",columnDefinition="json")
     private String picList;
-    @Column(name = "picInfo")
+    @Column(name = "picInfo",columnDefinition="json")
     private String picInfo;
 
     @Override
@@ -67,11 +70,11 @@ public class  Card  extends Model<Card>  {
         this.text = text;
     }
 
-    public boolean isLongText() {
+    public Boolean getLongText() {
         return isLongText;
     }
 
-    public void setLongText(boolean longText) {
+    public void setLongText(Boolean longText) {
         isLongText = longText;
     }
 

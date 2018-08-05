@@ -1,7 +1,7 @@
-//package com.terry.gakkisimle.im.mapper;
-//
-//import com.terry.gakkisimle.wechat.entity.po.spider.Card;
-//import org.springframework.data.repository.reactive.ReactiveCrudRepository;
-//
-//public interface CardDao extends ReactiveCrudRepository<Card, String> {
-//}
+package com.terry.gakkisimle.im.dao;
+
+import com.terry.gakkisimle.wechat.entity.po.spider.Card;
+import org.springframework.data.repository.CrudRepository;
+
+public interface CardDao extends CrudRepository<Card, String> {
+}

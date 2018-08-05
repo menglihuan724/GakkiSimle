@@ -7,7 +7,7 @@ spring:
         url: http://localhost:8089/ # 向服务端注册的地址
     aop:
       auto: true
-    # jackson时间格式化
+  # jackson时间格式化
     jackson:
         time-zone: GMT+8
         date-format: yyyy-MM-dd HH:mm:ss
@@ -51,6 +51,7 @@ spring:
             wall:
                 config:
                     multi-statement-allow: true
+    # 链路追踪
     zipkin:
       base-url: http://localhost:8090
     sleuth:
@@ -58,7 +59,7 @@ spring:
         percentage: 1.0
     #kafka
     kafka:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: 192.168.0.103:9092
       producer:
         batch-size: 16384
         buffer-memory: 33554432
@@ -69,18 +70,43 @@ spring:
         auto-offset-reset: earliest
         enable-auto-commit: true
         auto-commit-interval: 100
-        bootstrap-servers: localhost:9092
-        concurrency: 10
+        bootstrap-servers: 192.168.0.103:9092
+        concurrency: 1
         zookeeper:
-          connect: localhost:2181
+          connect: 192.168.0.103:2181
+    #mongo
     data:
       mongodb:
         uri: mongodb://menglihuan:297234@120.78.78.109:27018/gakki
         #key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
         #value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-    #mongodb
-
-#sleuth&&log4j2
+    #jpa
+    jpa:
+         hibernate:
+           ddl-auto: update
+         show-sql: true
+    #redis
+    redis:
+          #数据库索引
+          database: 0
+          host: 120.78.78.109
+          port: 6379
+          password: 297234
+          lettuce:
+            pool:
+              #最大连接数
+              max-active: 8
+              #最大阻塞等待时间(负数表示没限制)
+              max-wait: -1
+              #最大空闲
+              max-idle: 8
+              #最小空闲
+              min-idle: 0
+          #连接超时时间
+          timeout: 10000
+#          cluster:
+#            nodes: 120.78.78.109:6379
+#log4j2
 logging:
     #config: classpath:/logback-spring.xml
     level:
@@ -115,7 +141,7 @@ pagehelper:
 server:
     tomcat:
         uri-encoding: UTF-8
-        max-threads: 20
+        max-threads: 100
         min-spare-threads: 10
     port: 8086
     servlet-path: /
