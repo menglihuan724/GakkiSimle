@@ -23,14 +23,14 @@ public class MyAdminClient {
 //            createTopics(client);
 //            describeCluster(client);
            //listAllTopics(client);
-           describeTopics(client);
+          // describeTopics(client);
 //            alterConfigs(client);
 //            describeConfig(client);
-          //  deleteTopics(client);
+           deleteTopics(client);
         }
     }
     public static void deleteTopics(AdminClient client) throws ExecutionException, InterruptedException {
-        KafkaFuture<Void> futures = client.deleteTopics(Arrays.asList("test")).all();
+        KafkaFuture<Void> futures = client.deleteTopics(Arrays.asList("hsy")).all();
         futures.get();
         System.out.println("删除成功");
     }

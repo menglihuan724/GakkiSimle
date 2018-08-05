@@ -1,8 +1,10 @@
 package com.terry.gakkisimle.im.controller;
 
 import com.mongodb.BasicDBObject;
+import com.terry.gakkisimle.core.common.model.RestResult;
 import com.terry.gakkisimle.core.common.web.controller.BaseController;
 import com.terry.gakkisimle.im.service.CardService;
+import com.terry.gakkisimle.im.service.MenuService;
 import com.terry.gakkisimle.wechat.entity.po.spider.Card;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
@@ -32,6 +34,8 @@ public class TestController extends BaseController {
     private CardService cardService;
     @Autowired
     private KafkaTemplate kafkaTemplate;
+    @Autowired
+    private MenuService menuService;
 
     @RequestMapping("/helloworld")
     public String test(){
@@ -43,6 +47,12 @@ public class TestController extends BaseController {
         kafkaTemplate.send(topic,part,key,content);
         return "done";
     }
+    @GetMapping("/getMenus")
+    public RestResult<List<Object>> getMenus(){
+        List<Object> res=menuService.getMenus();
+        return new RestResult<>(200, "success", res);
+    }
+
 
     @KafkaListener(id = "terrymeng",groupId = "home",topicPartitions = @TopicPartition(topic = "hsy",partitions = "0"))
     public void processMessage2(ConsumerRecord<?, ?> record) {

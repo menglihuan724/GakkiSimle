@@ -15,7 +15,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @EnableEurekaClient
 @SpringBootApplication(scanBasePackages = "com.terry.gakkisimle.im")
-@EntityScan(basePackages={"com.terry.gakkisimle.wechat.entity.po"})
+@EntityScan(basePackages={"com.terry.gakkisimle.wechat.entity.po","com.terry.gakkisimle.im.entity.po"})
 @EnableFeignClients
 //@EnableJpaRepositories(basePackages = "com.terry.gakkisimle.im.dao")
 @MapperScan("com.terry.gakkisimle.im.mapper" )

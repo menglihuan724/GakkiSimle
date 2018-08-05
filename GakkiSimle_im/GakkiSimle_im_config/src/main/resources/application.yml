@@ -59,7 +59,7 @@ spring:
         percentage: 1.0
     #kafka
     kafka:
-      bootstrap-servers: 192.168.0.103:9092
+      bootstrap-servers: 192.168.0.103:9092,192.168.0.104:9092
       producer:
         batch-size: 16384
         buffer-memory: 33554432
@@ -70,7 +70,7 @@ spring:
         auto-offset-reset: earliest
         enable-auto-commit: true
         auto-commit-interval: 100
-        bootstrap-servers: 192.168.0.103:9092
+        bootstrap-servers: 192.168.0.103:9092,192.168.0.104:9092
         concurrency: 1
         zookeeper:
           connect: 192.168.0.103:2181
