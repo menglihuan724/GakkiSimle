@@ -11,6 +11,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -57,9 +58,9 @@ public class TestController extends BaseController {
                 map(l -> new SimpleDateFormat("HH:mm:ss").format(new Date()));
     }
 
-    @GetMapping(value = "/testFulx2")
-    public Flux<String> testFulx2(){
-        return Flux.just("321","123").delayElements(Duration.ofSeconds(2));
+    @GetMapping(value = "/testMono")
+    public Mono<String> testMono(){
+        return Mono.just("压力测试"+System.currentTimeMillis());
     }
 
 
