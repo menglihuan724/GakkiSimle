@@ -1,6 +1,7 @@
 package com.terry.gakkisimle.im.service.imp;
 
 import com.mongodb.BasicDBObject;
+import com.terry.gakkisimle.im.dao.CardDao;
 import com.terry.gakkisimle.im.mapper.CardMapper;
 import com.terry.gakkisimle.im.service.CardService;
 import com.terry.gakkisimle.wechat.entity.po.spider.Card;
@@ -22,11 +23,13 @@ public class CardServiceImpl implements CardService {
     @Autowired
     private CardMapper cardMapper;
     @Autowired
+    private CardDao cardDao;
+    @Autowired
     private MongoTemplate mongoTemplate;
 
     @Override
     public List<Card> getALL(){
-        return cardMapper.getAll("test.card");
+        return cardMapper.getAll("card");
     }
 
     @Override
@@ -57,5 +60,11 @@ public class CardServiceImpl implements CardService {
         update.set("text",basicDBObject.getString("text"));
         mongoTemplate.updateFirst(query,update,"card");
     }
+
+    @Override
+    public List<Card> getAllCardReact() {
+        return (List<Card>) cardDao.findAll();
+    }
+
 
 }
