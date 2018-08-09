@@ -55,8 +55,11 @@ spring:
     zipkin:
       base-url: http://localhost:8090
     sleuth:
+      web:
+        client:
+            enabled: true
       sampler:
-        percentage: 1.0
+       probability: 0.1
     #kafka
     kafka:
       bootstrap-servers: 192.168.0.103:9092,192.168.0.104:9092
