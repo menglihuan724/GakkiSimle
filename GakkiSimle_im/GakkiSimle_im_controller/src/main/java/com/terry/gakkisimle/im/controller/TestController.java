@@ -112,10 +112,10 @@ public class TestController extends BaseController {
     }
 
     @GetMapping(value = "/testMono")
-    public Flux<String> testMono(){
-        return Flux.just("压力测试"+System.currentTimeMillis());
+    public Flux<String> testMono() {
+        return Flux.just("压力测试" + System.currentTimeMillis());
 
-
+    }
 
     @RequestMapping("/putRedis/{name}/{score}")
     public String test2(@PathVariable String name,@PathVariable Integer score){
