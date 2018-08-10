@@ -26,6 +26,7 @@
         <dependency>
             <groupId>io.zipkin.java</groupId>
             <artifactId>zipkin-server</artifactId>
+            <!--<version>1.31.3</version>-->
         </dependency>
         <!--<dependency>-->
             <!--<groupId>io.zipkin.java</groupId>-->

@@ -10,7 +10,6 @@ import zipkin.server.EnableZipkinServer;
 @EnableDiscoveryClient
 public class ZipKinApplication {
     public static void main(String[] args) {
-
         SpringApplication.run(ZipKinApplication.class, args);
     }
 }
