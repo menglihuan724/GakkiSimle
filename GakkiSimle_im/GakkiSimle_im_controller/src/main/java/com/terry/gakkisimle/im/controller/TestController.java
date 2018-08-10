@@ -13,8 +13,6 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
-import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -55,7 +53,7 @@ public class TestController extends BaseController {
     }
 
 
-    @KafkaListener(id = "terrymeng",groupId = "home",topicPartitions = @TopicPartition(topic = "hsy",partitions = "0"))
+    //@KafkaListener(id = "terrymeng",groupId = "home",topicPartitions = @TopicPartition(topic = "hsy",partitions = "0"))
     public void processMessage2(ConsumerRecord<?, ?> record) {
         Optional<?> kafkaMessage = Optional.ofNullable(record.value());
         logger.info("topic{},part{},key{},message{}",record.topic(),record.partition(),record.key());
@@ -65,7 +63,7 @@ public class TestController extends BaseController {
         }
     }
 
-    @KafkaListener(id = "terry",groupId = "home",topicPartitions = @TopicPartition(topic = "hsy",partitions = "1"))
+   // @KafkaListener(id = "terry",groupId = "home",topicPartitions = @TopicPartition(topic = "hsy",partitions = "1"))
     public void processMessage(ConsumerRecord<?, ?> record) {
             Optional<?> kafkaMessage = Optional.ofNullable(record.value());
             logger.info("topic{},part{},key{},message{}",record.topic(),record.partition(),record.key());

@@ -9,3 +9,13 @@ eureka:
   client:
     service-url:
           defaultZone: http://localhost:7024/eureka
+
+#zipkin:
+#       storage:
+#         type: elasticsearch
+#         elasticsearch:
+#           cluster: elasticsearch
+#           hosts: http://localhost:9200
+#           index: zipkin
+#           index-shards: 5
+#           index-replicas: 1

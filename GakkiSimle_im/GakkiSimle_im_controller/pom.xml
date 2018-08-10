@@ -24,13 +24,6 @@
             <artifactId>spring-cloud-starter-eureka</artifactId>
             <version>${spring-eureka.version}</version>
         </dependency>
-        <!--网关-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-zipkin</artifactId>
-            <version>${spring-cloud-starter-zuul.version}</version>
-        </dependency>
-
         <!--web响应式编程-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
