@@ -1,5 +1,7 @@
 spring:
-    # 环境 dev|test|pro
+    # 环境 home|cgnb|pro
+    profiles:
+      active: home
     boot:
       admin:
         client:
@@ -7,7 +9,7 @@ spring:
         url: http://localhost:8089/ # 向服务端注册的地址
     aop:
       auto: true
-  # jackson时间格式化
+    # jackson时间格式化
     jackson:
         time-zone: GMT+8
         date-format: yyyy-MM-dd HH:mm:ss
@@ -18,97 +20,11 @@ spring:
             max-file-size: 100MB
             max-request-size: 100MB
             enabled: true
-  #数据源
-    datasource:
-        type: com.alibaba.druid.pool.DruidDataSource
-        driverClassName: com.mysql.jdbc.Driver
-        #url: jdbc:mysql://127.0.0.1:3306/gakkisimle?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&&characterSetServer=utf8mb4
-        url: jdbc:mysql://192.168.43.208:3306/gakkisimle?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
-        username: menglihuan
-        password: 297234
-        initial-size: 5
-        max-active: 10
-        min-idle: 5
-        max-wait: 60000
-        pool-prepared-statements: true
-        max-pool-prepared-statement-per-connection-size: 20
-        time-between-eviction-runs-millis: 60000
-        min-evictable-idle-time-millis: 300000
-        validation-query: SELECT 1 FROM DUAL
-        test-while-idle: true
-        test-on-borrow: false
-        test-on-return: false
-        stat-view-servlet:
-            enabled: true
-            url-pattern: /druid/*
-            login-username: admin
-            login-password: 123456
-        filter:
-            stat:
-                log-slow-sql: true
-                slow-sql-millis: 1000
-                merge-sql: true
-            wall:
-                config:
-                    multi-statement-allow: true
-    # 链路追踪
-    zipkin:
-      base-url: http://localhost:9411
-    sleuth:
-      web:
-        client:
-            enabled: true
-      sampler:
-       probability: 1
-    #kafka
-    kafka:
-      bootstrap-servers: 192.168.0.103:9092,192.168.0.104:9092
-      producer:
-        batch-size: 16384
-        buffer-memory: 33554432
-        #key-serializer: org.apache.kafka.common.serialization.StringDeserializer
-        #value-serializer: org.apache.kafka.common.serialization.StringDeserializer
-      consumer:
-        group-id: test
-        auto-offset-reset: earliest
-        enable-auto-commit: true
-        auto-commit-interval: 100
-        bootstrap-servers: 192.168.0.103:9092,192.168.0.104:9092
-        concurrency: 1
-        zookeeper:
-          connect: 192.168.0.103:2181
-    #mongo
-    data:
-      mongodb:
-        uri: mongodb://menglihuan:297234@120.78.78.109:27018/gakki
-        #key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-        #value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     #jpa
     jpa:
          hibernate:
            ddl-auto: update
          show-sql: true
-    #redis
-    redis:
-          #数据库索引
-          database: 0
-          host: 120.78.78.109
-          port: 6379
-          password: 297234
-          lettuce:
-            pool:
-              #最大连接数
-              max-active: 8
-              #最大阻塞等待时间(负数表示没限制)
-              max-wait: -1
-              #最大空闲
-              max-idle: 8
-              #最小空闲
-              min-idle: 0
-          #连接超时时间
-          timeout: 10000
-#          cluster:
-#            nodes: 120.78.78.109:6379
 #log4j2
 logging:
     #config: classpath:/logback-spring.xml
