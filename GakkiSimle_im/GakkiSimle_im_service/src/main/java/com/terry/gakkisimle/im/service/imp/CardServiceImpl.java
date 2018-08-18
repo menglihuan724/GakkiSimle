@@ -1,5 +1,11 @@
 package com.terry.gakkisimle.im.service.imp;
 
+import brave.Span;
+import brave.Tracer;
+import brave.Tracing;
+import brave.context.log4j2.ThreadContextCurrentTraceContext;
+import brave.propagation.B3Propagation;
+import brave.propagation.ExtraFieldPropagation;
 import com.mongodb.BasicDBObject;
 import com.terry.gakkisimle.im.dao.CardDao;
 import com.terry.gakkisimle.im.mapper.CardMapper;
@@ -13,8 +19,12 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
+import zipkin2.codec.SpanBytesEncoder;
+import zipkin2.reporter.AsyncReporter;
+import zipkin2.reporter.Sender;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.limit;
 
@@ -26,6 +36,8 @@ public class CardServiceImpl implements CardService {
     private CardDao cardDao;
     @Autowired
     private MongoTemplate mongoTemplate;
+    @Autowired
+    private Tracer tracer;
 
     @Override
     public List<Card> getALL(){
@@ -34,10 +46,13 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public AggregationResults<Card> getAllByMongo() {
+        Span span = tracer.currentSpan();
+        span.tag("name","menglihuan");
         Aggregation agg = Aggregation.newAggregation(
 //                group("picInfo.type").count().as("total"),
                 limit(5));
         AggregationResults<Card> cards =  mongoTemplate.aggregate( agg,"card",Card.class);
+        tracer.nextSpan().tag("girlfriend","hsy").finish();
         return cards;
     }
 

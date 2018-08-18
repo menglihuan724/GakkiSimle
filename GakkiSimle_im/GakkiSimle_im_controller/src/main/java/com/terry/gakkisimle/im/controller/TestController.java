@@ -4,6 +4,7 @@ import com.mongodb.BasicDBObject;
 import com.terry.gakkisimle.core.common.model.RestResult;
 import com.terry.gakkisimle.core.common.web.controller.BaseController;
 import com.terry.gakkisimle.im.service.CardService;
+import com.terry.gakkisimle.im.service.EsService;
 import com.terry.gakkisimle.im.service.MenuService;
 import com.terry.gakkisimle.wechat.entity.po.spider.Card;
 import net.sf.ehcache.Cache;
@@ -16,9 +17,9 @@ import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -35,11 +36,18 @@ public class TestController extends BaseController {
     private KafkaTemplate kafkaTemplate;
     @Autowired
     private MenuService menuService;
+    @Autowired
+    private EsService esService;
 
     @RequestMapping("/helloworld")
     public String test(){
         return "IM调用";
     }
+    @RequestMapping("/getEsIndices")
+    public Map getEsIndices(){
+        return esService.queryAllIndices();
+    }
+
 
     @GetMapping("/putKafkaTopic")
     public String putKafkaTopic(String topic,Integer part,String key,String content){
