@@ -3,8 +3,8 @@ package com.terry.gakkisimle.im.controller;
 import com.mongodb.BasicDBObject;
 import com.terry.gakkisimle.core.common.model.RestResult;
 import com.terry.gakkisimle.core.common.web.controller.BaseController;
+import com.terry.gakkisimle.im.entity.vo.Task;
 import com.terry.gakkisimle.im.service.CardService;
-import com.terry.gakkisimle.im.service.EsService;
 import com.terry.gakkisimle.im.service.MenuService;
 import com.terry.gakkisimle.wechat.entity.po.spider.Card;
 import net.sf.ehcache.Cache;
@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.Future;
 
 
 @RestController
@@ -37,16 +37,18 @@ public class TestController extends BaseController {
     @Autowired
     private MenuService menuService;
     @Autowired
-    private EsService esService;
+    private Task task;
+//    @Autowired
+//    private EsService esService;
 
     @RequestMapping("/helloworld")
     public String test(){
         return "IM调用";
     }
-    @RequestMapping("/getEsIndices")
-    public Map getEsIndices(){
-        return esService.queryAllIndices();
-    }
+//    @RequestMapping("/getEsIndices")
+//    public Map getEsIndices(){
+//        return esService.queryAllIndices();
+//    }
 
 
     @GetMapping("/putKafkaTopic")
@@ -160,4 +162,25 @@ public class TestController extends BaseController {
         Element element=cache.get(name);
         return (String) element.getObjectValue();
     }
+    @RequestMapping("/test")
+    public void testAysnc() throws Exception {
+
+            long start = System.currentTimeMillis();
+            Future<String> task1 = task.doTaskOne();
+            Future<String> task2 = task.doTaskTwo();
+            Future<String> task3 = task.doTaskThree();
+
+            while(true) {
+                if(task1.isDone() && task2.isDone() && task3.isDone()) {
+                    // 三个任务都调用完成，退出循环等待
+                    break;
+                }
+                Thread.sleep(1000);
+            }
+
+            long end = System.currentTimeMillis();
+
+            System.out.println("任务全部完成，总耗时：" + (end - start) + "毫秒");
+    }
+
 }

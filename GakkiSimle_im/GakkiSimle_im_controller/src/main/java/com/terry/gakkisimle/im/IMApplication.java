@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.scheduling.annotation.EnableAsync;
 import tk.mybatis.spring.annotation.MapperScan;
 
 
@@ -17,6 +18,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication(scanBasePackages = "com.terry.gakkisimle.im")
 @EntityScan(basePackages={"com.terry.gakkisimle.wechat.entity.po","com.terry.gakkisimle.im.entity.po"})
 @EnableFeignClients
+@EnableAsync
 //@EnableJpaRepositories(basePackages = "com.terry.gakkisimle.im.dao")
 @MapperScan("com.terry.gakkisimle.im.mapper" )
 public class IMApplication {

@@ -3,7 +3,6 @@ package com.terry.gakkisimle.im.service.imp;
 import com.terry.gakkisimle.im.service.EsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
-import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
@@ -12,7 +11,7 @@ import java.util.Map;
  * @Author:TERRY_MENG
  * @Date:2018-08-13
  */
-@Service
+//@Service
 public class EsServiceImpl implements EsService {
     @Autowired
     private ElasticsearchTemplate elasticsearchTemplate;
