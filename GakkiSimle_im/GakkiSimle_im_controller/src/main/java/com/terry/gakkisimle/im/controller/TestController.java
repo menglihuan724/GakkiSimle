@@ -3,7 +3,7 @@ package com.terry.gakkisimle.im.controller;
 import com.mongodb.BasicDBObject;
 import com.terry.gakkisimle.core.common.model.RestResult;
 import com.terry.gakkisimle.core.common.web.controller.BaseController;
-import com.terry.gakkisimle.im.entity.vo.Task;
+import com.terry.gakkisimle.im.sys.task.Task;
 import com.terry.gakkisimle.im.service.CardService;
 import com.terry.gakkisimle.im.service.MenuService;
 import com.terry.gakkisimle.wechat.entity.po.spider.Card;
@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 
 @RestController
@@ -167,6 +168,7 @@ public class TestController extends BaseController {
 
             long start = System.currentTimeMillis();
             Future<String> task1 = task.doTaskOne();
+            task1.get(5,TimeUnit.SECONDS);
             Future<String> task2 = task.doTaskTwo();
             Future<String> task3 = task.doTaskThree();
 

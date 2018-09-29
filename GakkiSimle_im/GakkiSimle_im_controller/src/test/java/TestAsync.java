@@ -1,5 +1,5 @@
 //import com.terry.gakkisimle.im.IMApplication;
-//import com.terry.gakkisimle.im.entity.vo.Task;
+//import com.terry.gakkisimle.im.sys.task.Task;
 //import org.junit.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;
