@@ -13,4 +13,6 @@ public interface CardService {
     void deleteById(String id);
     void insertOrupdate(BasicDBObject basicDBObject);
     List<Card> getAllCardReact();
+    void A() throws Exception;
+    void B() throws Exception;
 }
