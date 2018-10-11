@@ -14,15 +14,15 @@ public class  Card  extends Model<Card>  {
     //@GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String text;
-    @Column(name = "isLongText",columnDefinition="tinyint")
+    @Column(name = "is_long_text",columnDefinition="tinyint")
     private Boolean isLongText;
     @Column(name = "created_at")
     private String created_at;
-    @Column(name = "textLength",columnDefinition="int")
+    @Column(name = "text_length",columnDefinition="int")
     private Integer textLength;
-    @Column(name = "picList",columnDefinition="json")
+    @Column(name = "pic_list",columnDefinition="json")
     private String picList;
-    @Column(name = "picInfo",columnDefinition="json")
+    @Column(name = "pic_info",columnDefinition="json")
     private String picInfo;
 
     @Override

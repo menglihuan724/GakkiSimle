@@ -15,9 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -31,7 +33,7 @@ public class TestController extends BaseController {
 
     @Autowired
     private RedisTemplate redisTemplate;
-    @Autowired
+    @Resource(name = "cardService1")
     private CardService cardService;
     @Autowired
     private KafkaTemplate kafkaTemplate;
@@ -163,8 +165,8 @@ public class TestController extends BaseController {
         Element element=cache.get(name);
         return (String) element.getObjectValue();
     }
-    @RequestMapping("/test")
-    public void testAysnc() throws Exception {
+    @RequestMapping("/testAysnc")
+        public void testAysnc() throws Exception {
 
             long start = System.currentTimeMillis();
             Future<String> task1 = task.doTaskOne();
@@ -184,6 +186,13 @@ public class TestController extends BaseController {
 
             System.out.println("任务全部完成，总耗时：" + (end - start) + "毫秒");
     }
-
+    @RequestMapping("/testTranscation")
+    public void testTranscation(){
+        try {
+            cardService.A();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
