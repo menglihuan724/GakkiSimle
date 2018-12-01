@@ -48,6 +48,7 @@
         <spring-admin.version>2.0.0</spring-admin.version>
         <spring-eureka.version>1.3.5.RELEASE</spring-eureka.version>
         <spring-cloud-starter-zipkin.version>1.3.4.RELEASE</spring-cloud-starter-zipkin.version>
+        <lombok.version>1.16.12</lombok.version>
     </properties>
 
 
@@ -153,7 +154,12 @@
             <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
             <version>${spring-data-mongo.version}</version>
         </dependency>
-
+        <!--lombok plugin-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
 
 
     </dependencies>
