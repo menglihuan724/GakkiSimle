@@ -1,8 +1,7 @@
 package com.terry.gakkisimle.im.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.TypeReference;
-import com.terry.gakkisimle.im.entity.dto.protocol.LoginRequestPacket;
+import com.alibaba.fastjson.JSONObject;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -21,14 +20,13 @@ public class TestWebSocketHanlder extends SimpleChannelInboundHandler<TextWebSoc
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) throws Exception {
         String res=msg.text();
-        System.out.println("收到消息：");
+        System.out.println("收到消息："+res);
 
         /**
          * writeAndFlush接收的参数类型是Object类型，但是一般我们都是要传入管道中传输数据的类型，比如我们当前的demo
          * 传输的就是TextWebSocketFrame类型的数据
          */
-        LoginRequestPacket loginRequestPacket=JSON.parseObject(res,new TypeReference<LoginRequestPacket>(){});
-        ctx.fireChannelRead(loginRequestPacket);
+        ctx.fireChannelRead(JSON.toJSONBytes(JSONObject.parseObject(res)));
         ctx.channel().writeAndFlush(new TextWebSocketFrame("服务时间："+ LocalDateTime.now()));
     }
 
