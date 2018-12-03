@@ -15,6 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public abstract class Packet extends TextWebSocketFrame {
+
     /**
      * 协议版本
      */

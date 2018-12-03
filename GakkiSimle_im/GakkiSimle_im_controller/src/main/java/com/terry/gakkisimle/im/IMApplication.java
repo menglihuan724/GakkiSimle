@@ -1,6 +1,7 @@
 package com.terry.gakkisimle.im;
 
-import com.terry.gakkisimle.im.socket.LoginRequestHandler;
+import com.terry.gakkisimle.im.handler.LoginRequestHandler;
+import com.terry.gakkisimle.im.handler.TestWebSocketHanlder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -89,6 +90,7 @@ public class IMApplication {
 //                        ch.pipeline().addLast(new Spliter());
 //                        ch.pipeline().addLast(PacketCodecHandler.INSTANCE);
                         ch.pipeline().addLast(new WebSocketServerProtocolHandler("/ws"));
+                        ch.pipeline().addLast(new TestWebSocketHanlder());
                         ch.pipeline().addLast(LoginRequestHandler.INSTANCE);
 //                        ch.pipeline().addLast(HeartBeatRequestHandler.INSTANCE);
 //                        ch.pipeline().addLast(AuthHandler.INSTANCE);
