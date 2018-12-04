@@ -19,6 +19,7 @@ public class PacketCodecHandler extends MessageToMessageCodec<ByteBuf, Packet> {
 
     @Override
     protected void decode(ChannelHandlerContext ctx, ByteBuf byteBuf, List<Object> out) {
+
         out.add(PacketCodec.INSTANCE.decode(byteBuf));
     }
 
