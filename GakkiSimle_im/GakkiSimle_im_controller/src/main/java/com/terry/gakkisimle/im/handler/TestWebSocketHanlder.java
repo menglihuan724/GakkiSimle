@@ -1,13 +1,11 @@
 package com.terry.gakkisimle.im.handler;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
+import com.terry.gakkisimle.im.entity.dto.protocol.PacketCodec;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-
-import java.time.LocalDateTime;
 
 /**
  * @author:menglihuan
@@ -26,8 +24,10 @@ public class TestWebSocketHanlder extends SimpleChannelInboundHandler<TextWebSoc
          * writeAndFlush接收的参数类型是Object类型，但是一般我们都是要传入管道中传输数据的类型，比如我们当前的demo
          * 传输的就是TextWebSocketFrame类型的数据
          */
-        ctx.fireChannelRead(JSON.toJSONBytes(JSONObject.parseObject(res)));
-        ctx.channel().writeAndFlush(new TextWebSocketFrame("服务时间："+ LocalDateTime.now()));
+        ByteBuf byteBuf = ctx.channel().alloc().ioBuffer();
+        PacketCodec.INSTANCE.encode(byteBuf,res);
+        ctx.fireChannelRead(byteBuf);
+        //ctx.channel().writeAndFlush(new TextWebSocketFrame("服务时间："+ LocalDateTime.now()));
     }
 
     //每个channel都有一个唯一的id值
@@ -40,6 +40,7 @@ public class TestWebSocketHanlder extends SimpleChannelInboundHandler<TextWebSoc
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         System.out.println("handlerRemoved：" + ctx.channel().id().asLongText());
+
     }
 
     @Override

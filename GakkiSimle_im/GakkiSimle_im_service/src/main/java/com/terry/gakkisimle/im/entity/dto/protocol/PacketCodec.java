@@ -1,5 +1,6 @@
 package com.terry.gakkisimle.im.entity.dto.protocol;
 
+import com.alibaba.fastjson.JSONObject;
 import com.terry.gakkisimle.im.util.serialize.Serializer;
 import com.terry.gakkisimle.im.util.serialize.impl.JSONSerializer;
 import io.netty.buffer.ByteBuf;
@@ -55,6 +56,20 @@ public class PacketCodec {
         byteBuf.writeByte(packet.getVersion());
         byteBuf.writeByte(Serializer.DEFAULT.getSerializerAlgorithm());
         byteBuf.writeByte(packet.getCommand());
+        byteBuf.writeInt(bytes.length);
+        byteBuf.writeBytes(bytes);
+    }
+    public void encode(ByteBuf byteBuf, String packet) {
+        //获取version和command
+        JSONObject jsonObject=JSONObject.parseObject(packet);
+        // 1. 序列化 java 对象
+        byte[] bytes = Serializer.DEFAULT.serialize(jsonObject);
+
+        // 2. 实际编码过程
+        byteBuf.writeInt(MAGIC_NUMBER);
+        byteBuf.writeByte(jsonObject.getByte("version")!=null?jsonObject.getByte("version"):1);
+        byteBuf.writeByte(Serializer.DEFAULT.getSerializerAlgorithm());
+        byteBuf.writeByte(jsonObject.getByte("command")!=null?jsonObject.getByte("version"):1);
         byteBuf.writeInt(bytes.length);
         byteBuf.writeBytes(bytes);
     }

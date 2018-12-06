@@ -1,7 +1,7 @@
 package com.terry.gakkisimle.im;
 
 import com.terry.gakkisimle.im.handler.LoginRequestHandler;
-import com.terry.gakkisimle.im.handler.PacketDecoder;
+import com.terry.gakkisimle.im.handler.PacketCodecHandler;
 import com.terry.gakkisimle.im.handler.TestWebSocketHanlder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
@@ -61,8 +61,8 @@ public class IMApplication {
     }
 
     private static void startServer() throws Exception {
-        NioEventLoopGroup boosGroup = new NioEventLoopGroup();
-        NioEventLoopGroup workerGroup = new NioEventLoopGroup();
+        NioEventLoopGroup boosGroup = new NioEventLoopGroup(2);
+        NioEventLoopGroup workerGroup = new NioEventLoopGroup(3);
         SSLContext sslContext = createSSLContext("JKS",
                 "D:\\myproject\\GakkiSimle\\GakkiSimle_im\\GakkiSimle_im_config\\src\\main\\resources\\wss.jks","netty123");
         //SSLEngine 此类允许使用ssl安全套接层协议进行安全通信
@@ -91,8 +91,8 @@ public class IMApplication {
 //                        ch.pipeline().addLast(new Spliter());
                         ch.pipeline().addLast(new WebSocketServerProtocolHandler("/ws"));
                         ch.pipeline().addLast(new TestWebSocketHanlder());
-                        ch.pipeline().addLast(new PacketDecoder());
-                        //ch.pipeline().addLast(PacketCodecandlerINSTANCE);
+//                        ch.pipeline().addLast(new PacketDecoder());
+                        ch.pipeline().addLast(PacketCodecHandler.INSTANCE);
                         ch.pipeline().addLast(LoginRequestHandler.INSTANCE);
 //                        ch.pipeline().addLast(HeartBeatRequestHandler.INSTANCE);
 //                        ch.pipeline().addLast(AuthHandler.INSTANCE);

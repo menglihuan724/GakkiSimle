@@ -1,7 +1,6 @@
 package com.terry.gakkisimle.im.entity.dto.protocol;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +13,7 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public abstract class Packet extends TextWebSocketFrame {
+public abstract class Packet  {
 
     /**
      * 协议版本
